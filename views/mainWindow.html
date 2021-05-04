@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize-->
+    <link type="text/css" rel="stylesheet" href="../style/materialize.min.css"  media="screen,projection"/>
+    <script type="text/javascript" src="../style/materialize.min.js"></script>
+    
+    <title id="title">Військкомат</title>
+</head>
+
+<body>
+    <!--Body HTML-->
+    <div id="preloader" class="row">
+        <div class="valign-wrapper" style="height: 520px;">
+            <div class="col s12 center-align">
+                <div class="preloader-wrapper big active">
+                    <div class="spinner-layer spinner-blue">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="content" style="display: none">
+        <div class="row" style="background-color: darkgrey; margin: 0px;" >
+            <div class="valign-wrapper" style="height: 200px;">
+                <div class="col s12 center-align">
+                    <h4>Вітаємо у програмі "Військкомат"</h4>
+                    <h6>Надійна пошукова система</h6>
+                    
+                </div>
+            </div>
+            
+        </div>
+        <div class="divider"></div>
+        <div class="row container">
+            <div class="valign-wrapper">
+                <div class="col s12 center-align">
+                    <h5>Інструкція</h5>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="row container">
+            <div class="col s4">
+                <h5>Крок 1.</h5>
+                <p>Знайдіть кнопку пошуку в меню "Інструменти"</p>
+            </div>
+            <div class="col s8">
+                <div class="card-panel">
+                    <img src="../assets/tutorial-1.png" alt="tutorial image" height="200px" style="border: 1px solid dimgray;">
+                </div>
+                
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="row container">
+            <div class="col s4">
+                <h5>Крок 2.</h5>
+                <p>Введіть дві дати, які відповідають формату День.Місяць.Рік, наприклад: "01.01.2021", "28.01.2021". Далі натисніть кнопку "підтвердити"</p>
+            </div>
+            <div class="col s8">
+                <div class="card-panel">
+                    <img src="../assets/tutorial-2.png" alt="tutorial image" height="200px" style="border: 1px solid dimgray;">
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="row container">
+            <div class="col s4">
+                <h5>Крок 3.</h5>
+                <p>Ви побачите результати пошуку у новому вікні, а також вони збережуться до папки "exports" за шляхом: 
+                    <label id="path-view"></label>
+                </p>
+            </div>
+            <div class="col s8">
+                <div class="card-panel">
+                    <img src="../assets/tutorial-3.png" alt="tutorial image" height="200px" style="border: 1px solid dimgray;">
+                </div>
+            </div>
+        </div>
+        <div class="divider"></div>
+        <div class="row" style="margin: 0px;">
+            <div class="valign-wrapper" style="height: 150px;">
+                <div class="col s12 center-align">
+                    <h5>Тепер ви готові до роботи з програмою</h5>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    
+    <script>
+        const path = require('path')
+
+        document.getElementById("path-view").append(path.join(__dirname, '../exports/'))
+
+        showContent()
+
+        function showContent() {
+            document.getElementById("content").style.display = "block";
+            document.getElementById("preloader").style.display = "none";
+        }
+
+
+    </script>
+
+</body>
+</html>
+
+<!--
+    Написати програму даних у військкоматі: є поля: ім’я військовозобов'язаного; 
+    звання; дата призову; дата звільнення в запас, назва частини. 
+    Написати метод, щоб вивести відомості по всім військовозобов'язаним із 
+    зазначенням терміну служби в днях; ввести дві дати і вивести інформацію 
+    по всім військовозобов'язаним, звільненим в запас в період введеного інтервалу 
+    дат. Паралельно, дані записати у файл.
+-->

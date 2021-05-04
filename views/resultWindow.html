@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize-->
+    <link type="text/css" rel="stylesheet" href="../style/materialize.min.css"  media="screen,projection"/>
+    <script type="text/javascript" src="../style/materialize.min.js"></script>
+    
+    <title id="title">Пошук...</title>
+</head>
+<body>
+    <!--Body HTML-->
+    <div id="preloader" class="row">
+        <div class="valign-wrapper" style="height: 520px;">
+            <div class="col s12 center-align">
+                <div class="preloader-wrapper big active">
+                    <div class="spinner-layer spinner-blue">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="nothing" style="display: none">
+        <img src="../assets/nothing_found.png" alt="nothing found" style="width: 40%">
+    </div>
+
+    <div id="table-and-debug" style="display: none">
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th>Прізвище, ім'я</th>
+                    <th>Телефон</th>
+                    <th>Звання</th>
+                    <th>Дата призову</th>
+                    <th>Дата звільнення</th>
+                    <th>Днів</th>
+                    <th>Частина</th>
+                </tr>
+            </thead>
+            <tbody id="dataTable"></tbody>
+        </table>
+        <div id="debug-container"></div>
+    </div>
+
+    <!--Import JS-->
+    <script src="../scripts/showData.js"></script>
+    <script src="../scripts/calculateDays.js"></script>
+    <script src="../scripts/checkDate.js"></script>
+    <script src="../scripts/renderRow.js"></script>
+    <script src="../scripts/createTxtRow.js"></script>
+    <script src="../scripts/showError.js"></script>
+    <script src="../scripts/createTxtDocument.js"></script>
+
+    <!--Execute JS-->
+    <script>
+        const electron = require('electron')
+        const {ipcRenderer} = electron
+
+        ipcRenderer.once("dates-for-search", (event, dates) => {
+            console.log(`Fetched dateFrom=\'${dates.dateFrom}\' dateTo=\'${dates.dateTo}\'`)
+
+            showData(dates.dateFrom, dates.dateTo)        
+        })
+
+        ipcRenderer.send("resultWindow-ready")
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize-->
+    <link type="text/css" rel="stylesheet" href="../style/materialize.min.css"  media="screen,projection"/>
+    <script type="text/javascript" src="../style/materialize.min.js"></script>
+    
+    <title>Пошук</title>
+</head>
+
+<body>
+    <!--Body HTML-->
+    <form style="padding: 5px;">
+        <p id="input-info" style="padding: 5px">Введіть діапазон дат</p>
+        <div class="input-field">
+            <input id="dateFrom" type="text" maxlength="10" placeholder="ДД.ММ.РРРР" value="" autofocus required>
+            <label for="dateFrom">З</label>
+        </div>
+        <div class="input-field">
+            <input id="dateTo" type="text" maxlength="10" placeholder="ДД.ММ.РРРР" value="" required>
+            <label for="dateTo">До</label>
+        </div>
+        <button class="waves-effect waves-light btn" type="submit">Підтвердити</button>
+    </form>
+
+    <!--Import JS-->
+    <script src="../scripts/sendDates.js"></script>
+    <script src="../scripts/validateInput.js"></script>
+
+    <script>
+        document.addEventListener("submit", (event) => {
+            event.preventDefault()
+            if(validateInput(document.querySelector('#dateFrom').value, document.querySelector('#dateTo').value)) {
+                sendDates()
+            } else{
+                var p = document.getElementById('input-info')
+                p.innerHTML = 'Формат вхідних даних хибний'
+                p.style.cssText += 'background-color:#ffcccc;border-left:5px solid red'
+            }
+
+        })
+    </script>
+
+</body>
+</html>
