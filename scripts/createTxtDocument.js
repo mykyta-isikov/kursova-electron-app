@@ -52,8 +52,14 @@ function createTxtDocument (array, dateFrom, dateTo){
         outputString += blankRow('-', '+')
     }
 
+    fs.mkdir('../../../exports', (err) => {
+        if (err) {
+            throw err;
+        }
+        console.log("Directory is created.");
+    });
     /*** Table exproting ***/
-    fs.writeFile(`../exports/${dateFrom}-${dateTo}.txt`, outputString, function(error) {
+    fs.writeFile(`../../../exports/${dateFrom}-${dateTo}.txt`, outputString, function(error) {
         if (error) {
             console.log(error);
         }

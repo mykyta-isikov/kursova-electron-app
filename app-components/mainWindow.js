@@ -11,6 +11,7 @@ let mainWindow
 function create(){
     // Create new window
     mainWindow = new BrowserWindow({
+        icon: path.join(__dirname, '../assets/win/icon.ico'),
         webPreferences:{
             nodeIntegration: true,
             contextIsolation: false

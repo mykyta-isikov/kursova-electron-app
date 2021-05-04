@@ -2,3 +2,4 @@ node_modules
 dbpasswords.txt
 
 out/
+release-builds/

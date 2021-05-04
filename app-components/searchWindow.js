@@ -11,6 +11,7 @@ let searchWindow
 function create(){
     // Create new window
     searchWindow = new BrowserWindow({
+        icon: path.join(__dirname, '../assets/win/icon.ico'),
         width: 300,
         height: 300,
         title: 'Search by date',

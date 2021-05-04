@@ -11,6 +11,7 @@ let resultWindow;
 function create(){
         // Create new window
         resultWindow = new BrowserWindow({
+            icon: path.join(__dirname, '../assets/win/icon.ico'),
             width: 1000,
             height: 700,
             webPreferences:{
