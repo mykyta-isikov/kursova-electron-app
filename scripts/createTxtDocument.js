@@ -3,6 +3,8 @@ const fs = require('fs')
 
 function createTxtDocument (array, dateFrom, dateTo){
     
+    console.log('initialized')
+
     /*** Variables  ***/
     var headers = [
         "Прізвище, ім'я",
@@ -51,15 +53,15 @@ function createTxtDocument (array, dateFrom, dateTo){
         outputString += filledRow(i)
         outputString += blankRow('-', '+')
     }
-
-    fs.mkdir('../../../exports', (err) => {
+/*
+    fs.mkdir('../exports', (err) => {
         if (err) {
             throw err;
         }
         console.log("Directory is created.");
-    });
+    });*/
     /*** Table exproting ***/
-    fs.writeFile(`../../../exports/${dateFrom}-${dateTo}.txt`, outputString, function(error) {
+    fs.writeFile(`exports/${dateFrom}-${dateTo}.txt`, outputString, function(error) {
         if (error) {
             console.log(error);
         }
