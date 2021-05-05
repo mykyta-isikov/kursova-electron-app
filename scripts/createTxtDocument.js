@@ -1,5 +1,6 @@
 var moment = require('moment'); 
 const fs = require('fs')
+const path = require('path')
 
 function createTxtDocument (array, dateFrom, dateTo){
     
@@ -19,6 +20,8 @@ function createTxtDocument (array, dateFrom, dateTo){
     var maxLengthArray = [0,0,0,0,0,0,0]
     var checkedRows = []
     counter = 0
+    var folderPath = path.join(__dirname, '../../../exports')
+    var filePath = path.join(__dirname, `../../../exports/${dateFrom}-${dateTo}.txt`)
 
     /*** Calculating maximum column width  ***/
     for(i = 0; i < maxLengthArray.length; i++) {
@@ -53,17 +56,21 @@ function createTxtDocument (array, dateFrom, dateTo){
         outputString += filledRow(i)
         outputString += blankRow('-', '+')
     }
-/*
-    fs.mkdir('../exports', (err) => {
-        if (err) {
-            throw err;
+
+    fs.mkdir(folderPath, (error) => {
+        if (error) {
+            console.log(error)
+            console.log(folderPath)
+        } else {
+            console.log('directory created')
         }
-        console.log("Directory is created.");
-    });*/
+    });
     /*** Table exproting ***/
-    fs.writeFile(`exports/${dateFrom}-${dateTo}.txt`, outputString, function(error) {
+    fs.writeFile(filePath, outputString, function(error) {
         if (error) {
             console.log(error);
+        } else {
+            console.log('file created')
         }
     })
 
