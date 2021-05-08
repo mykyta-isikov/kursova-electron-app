@@ -35,6 +35,7 @@
 
     <div id="nothing" style="display: none">
         <img src="../assets/nothing_found.png" alt="nothing found" style="width: 40%">
+        <p>Нажаль, за вашим запитом нічого не знайдено.</p>
     </div>
 
     <div id="table-and-debug" style="display: none">
@@ -67,6 +68,8 @@
     <script>
         const electron = require('electron')
         const {ipcRenderer} = electron
+
+        const moment = require('moment')
 
         ipcRenderer.once("dates-for-search", (event, dates) => {
             console.log(`Fetched dateFrom=\'${dates.dateFrom}\' dateTo=\'${dates.dateTo}\'`)

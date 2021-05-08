@@ -1,14 +1,14 @@
 {
   "name": "viyskkomat",
   "productName": "Viyskkomat",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Node.js + MongoDB app",
   "main": "main.js",
   "scripts": {
     "test": "echo Howdy",
     "start": "electron .",
     "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
-    "package-win": "electron-packager . viyskkomat --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Viyskkomat\"",    
+    "package-win": "electron-packager . viyskkomat --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Viyskkomat\"",
     "package-linux": "electron-packager . viyskkomat --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/icon.png --prune=true --out=release-builds"
   },
   "author": "Mykyta Isikov",
@@ -27,7 +27,12 @@
     "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
     "@electron-forge/maker-zip": "^6.0.0-beta.54",
     "electron": "^12.0.6",
-    "electron-packager": "^15.2.0"
+    "electron-packager": "^15.2.0",
+    "eslint": "^7.26.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.3.1"
   },
   "config": {
     "forge": {
