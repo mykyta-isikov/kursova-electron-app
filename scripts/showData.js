@@ -12,9 +12,17 @@ function showData (dateFrom, dateTo) {
       showError('debug-container', error)
     })
 
+  const dateFromString = `${dateFrom.split('.')[1]}.${dateFrom.split('.')[0]}.${dateFrom.split('.')[2]}`
+  const dateToString = `${dateTo.split('.')[1]}.${dateTo.split('.')[0]}.${dateTo.split('.')[2]}`
+
   /* DB query */
   Conscript
-    .find({})
+    .find({
+      dateOut: {
+        $gte: moment(dateFromString).format('YYYY-MM-DDT00:00:00.000+00:00'),
+        $lte: moment(dateToString).format('YYYY-MM-DDT00:00:00.000+00:00')
+      }
+    })
     .sort({ dateOut: 'asc' })
     .then((conscripts) => {
       console.log('Database contents fetched successfully')
@@ -24,11 +32,8 @@ function showData (dateFrom, dateTo) {
       try {
         /* Loop through search results */
         for (let i = 0; i < conscripts.length; i++) {
-          /* Render row if "dateOut" is in range */
-          if (checkDate(conscripts[i]._doc.dateOut, dateFrom, dateTo)) {
-            renderRow(conscripts, i)
-            counter++
-          }
+          renderRow(conscripts, i)
+          counter++
         }
 
         /* If found anything, create .txt document */

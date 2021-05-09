@@ -6,7 +6,7 @@ const mainWindowLib = require('./app-components/mainWindow')
 const resultWindowLib = require('./app-components/resultWindow')
 
 /* Production mode switch */
-//process.env.NODE_ENV = 'production'
+process.env.NODE_ENV = 'production'
 
 /* Listen for the app to be ready */
 app.on('ready', function () {

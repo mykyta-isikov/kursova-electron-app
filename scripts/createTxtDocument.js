@@ -25,24 +25,22 @@ function createTxtDocument (array, dateFrom, dateTo) {
   }
 
   for (let i = 0; i < array.length; i++) {
-    if (checkDate(array[i]._doc.dateOut, dateFrom, dateTo)) {
-      checkedRows[counter] = []
+    checkedRows[counter] = []
 
-      for (let j = 0; j < maxLengthArray.length; j++) {
-        if (j === 0) checkedRows[counter][j] = `${array[i]._doc.name.last} ${array[i]._doc.name.first}`
-        if (j === 1) checkedRows[counter][j] = array[i]._doc.phone
-        if (j === 2) checkedRows[counter][j] = array[i]._doc.rank
-        if (j === 3) checkedRows[counter][j] = moment(array[i]._doc.dateIn).format('DD.MM.YYYY')
-        if (j === 4) checkedRows[counter][j] = moment(array[i]._doc.dateOut).format('DD.MM.YYYY')
-        if (j === 5) checkedRows[counter][j] = calculateDays(array[i]._doc.dateIn, array[i]._doc.dateOut)
-        if (j === 6) checkedRows[counter][j] = array[i]._doc.base
+    for (let j = 0; j < maxLengthArray.length; j++) {
+      if (j === 0) checkedRows[counter][j] = `${array[i]._doc.name.last} ${array[i]._doc.name.first}`
+      if (j === 1) checkedRows[counter][j] = array[i]._doc.phone
+      if (j === 2) checkedRows[counter][j] = array[i]._doc.rank
+      if (j === 3) checkedRows[counter][j] = moment(array[i]._doc.dateIn).format('DD.MM.YYYY')
+      if (j === 4) checkedRows[counter][j] = moment(array[i]._doc.dateOut).format('DD.MM.YYYY')
+      if (j === 5) checkedRows[counter][j] = moment(array[i]._doc.dateOut).diff(moment(array[i]._doc.dateIn), 'days')
+      if (j === 6) checkedRows[counter][j] = array[i]._doc.base
 
-        if (maxLengthArray[j] < checkedRows[counter][j].length + 1) {
-          maxLengthArray[j] = checkedRows[counter][j].length + 1
-        }
+      if (maxLengthArray[j] < checkedRows[counter][j].length + 1) {
+        maxLengthArray[j] = checkedRows[counter][j].length + 1
       }
-      counter++
     }
+    counter++
   }
 
   /* Table building */
