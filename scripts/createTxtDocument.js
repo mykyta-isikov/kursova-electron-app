@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 
-function createTxtDocument (array, dateFrom, dateTo) {
+function createTxtDocument (dataObject, dateFrom, dateTo) {
   /* Variables  */
   const headers = [
     'Прізвище, ім\'я',
@@ -24,17 +24,17 @@ function createTxtDocument (array, dateFrom, dateTo) {
     if (maxLengthArray[i] < headers[i].length + 1) maxLengthArray[i] = headers[i].length + 1
   }
 
-  for (let i = 0; i < array.length; i++) {
+  for (let i = 0; i < dataObject.length; i++) {
     checkedRows[counter] = []
 
     for (let j = 0; j < maxLengthArray.length; j++) {
-      if (j === 0) checkedRows[counter][j] = `${array[i]._doc.name.last} ${array[i]._doc.name.first}`
-      if (j === 1) checkedRows[counter][j] = array[i]._doc.phone
-      if (j === 2) checkedRows[counter][j] = array[i]._doc.rank
-      if (j === 3) checkedRows[counter][j] = moment(array[i]._doc.dateIn).format('DD.MM.YYYY')
-      if (j === 4) checkedRows[counter][j] = moment(array[i]._doc.dateOut).format('DD.MM.YYYY')
-      if (j === 5) checkedRows[counter][j] = moment(array[i]._doc.dateOut).diff(moment(array[i]._doc.dateIn), 'days')
-      if (j === 6) checkedRows[counter][j] = array[i]._doc.base
+      if (j === 0) checkedRows[counter][j] = `${dataObject[i]._doc.name.last} ${dataObject[i]._doc.name.first}`
+      if (j === 1) checkedRows[counter][j] = dataObject[i]._doc.phone
+      if (j === 2) checkedRows[counter][j] = dataObject[i]._doc.rank
+      if (j === 3) checkedRows[counter][j] = moment(dataObject[i]._doc.dateIn).format('DD.MM.YYYY')
+      if (j === 4) checkedRows[counter][j] = moment(dataObject[i]._doc.dateOut).format('DD.MM.YYYY')
+      if (j === 5) checkedRows[counter][j] = moment(dataObject[i]._doc.dateOut).diff(moment(dataObject[i]._doc.dateIn), 'days')
+      if (j === 6) checkedRows[counter][j] = dataObject[i]._doc.base
 
       if (maxLengthArray[j] < checkedRows[counter][j].length + 1) {
         maxLengthArray[j] = checkedRows[counter][j].length + 1
