@@ -2,8 +2,9 @@ const electron = require('electron')
 const { app } = electron
 
 function create () {
-  const mainWindowLib = require('./mainWindow')
   const searchWindowLib = require('./searchWindow')
+  const browseWindowLib = require('./browseWindow')
+  const mainWindowLib = require('./mainWindow')
 
   const mainMenuTemplate = [
     {
@@ -14,6 +15,13 @@ function create () {
           accelerator: 'CmdOrCtrl+S',
           click () {
             searchWindowLib.create()
+          }
+        },
+        {
+          label: 'Відобразити всіх',
+          accelerator: 'CmdOrCtrl+G',
+          click () {
+            browseWindowLib.create()
           }
         },
         {

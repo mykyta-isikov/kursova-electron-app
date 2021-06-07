@@ -62,21 +62,12 @@
     <script src="../scripts/calculateDays.js"></script>
     <script src="../scripts/renderRow.js"></script>
     <script src="../scripts/showError.js"></script>
-    <script src="../scripts/createTxtDocument.js"></script>
 
     <!--Execute JS-->
     <script>
-        const electron = require('electron')
-        const {ipcRenderer} = electron
-
         const moment = require('moment')
 
-        ipcRenderer.once("dates-for-search", (event, dates) => {
-          console.log(`Fetched dateFrom=\'${dates.dateFrom}\' dateTo=\'${dates.dateTo}\'`)
-          executeDBQuery(false, dates.dateFrom, dates.dateTo)
-        })
-
-        ipcRenderer.send("resultWindow-ready")
+        executeDBQuery(true, '', '')
     </script>
 
 </body>
