@@ -5,12 +5,12 @@ const mainMenuTemplate = require('./mainMenuTemplate')
 
 const { BrowserWindow, Menu } = electron
 
-let resultWindow
+let browseWindow
 
-/* Create result window */
+/* Create browse window */
 function create () {
   /* Window properties */
-  resultWindow = new BrowserWindow({
+  browseWindow = new BrowserWindow({
     icon: path.join(__dirname, '../assets/win/icon.ico'),
     width: 1000,
     height: 700,
@@ -25,18 +25,18 @@ function create () {
   Menu.setApplicationMenu(mainMenu)
 
   /* Load html into window */
-  resultWindow.loadURL(url.format({
-    pathname: path.join(__dirname, '../views/resultWindow.html'),
+  browseWindow.loadURL(url.format({
+    pathname: path.join(__dirname, '../views/browseWindow.html'),
     protocol: 'file:',
     slashes: true
   }))
 
   /* Garbage collection */
-  resultWindow.on('close', function () {
-    resultWindow = null
+  browseWindow.on('close', function () {
+    browseWindow = null
   })
 
-  return resultWindow
+  return browseWindow
 }
 
 module.exports = { create }

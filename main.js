@@ -1,29 +1,29 @@
+/* Import */
 const electron = require('electron')
-
-const {app, ipcMain} = electron
+const { app, ipcMain } = electron
 
 const mainWindowLib = require('./app-components/mainWindow')
 const resultWindowLib = require('./app-components/resultWindow')
 
+/* Production mode switch */
 process.env.NODE_ENV = 'production'
 
-// Listen for the app to be ready
-app.on('ready', function(){
-    mainWindow = mainWindowLib.create()
+/* Listen for the app to be ready */
+app.on('ready', function () {
+  mainWindowLib.create()
 })
 
-ipcMain.on("test-signal", (event, data) => {
-    console.log(`{ ${data.dateFrom}, ${data.dateTo} }`)
-    event.reply("test-reply", "reply")
+/* Catching searchWindow exports */
+ipcMain.on('form-contents', (event, dates) => {
+  console.log(`{ ${dates.dateFrom}, ${dates.dateTo} }`)
 
-    console.log("test-signal caught")
+  console.log('form-contents caught')
 
-    resultWindow = resultWindowLib.create()
+  resultWindowLib.create()
 
-    ipcMain.on("resultWindow-ready", (event) => {
-        console.log("resultWindow is ready, dates sent: " + `{ ${data.dateFrom}, ${data.dateTo} }`)
-        event.reply("dates-for-search", data)
-        ipcMain.removeAllListeners("resultWindow-ready")
-    });
+  ipcMain.on('resultWindow-ready', (event) => {
+    console.log('resultWindow is ready, dates sent: ' + `{ ${dates.dateFrom}, ${dates.dateTo} }`)
+    event.reply('dates-for-search', dates)
+    ipcMain.removeAllListeners('resultWindow-ready')
+  })
 })
-
